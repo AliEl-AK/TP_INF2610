@@ -8,6 +8,7 @@
 #include <sys/wait.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 typedef struct {
     int id;
@@ -59,6 +60,22 @@ Wing* createWings (long id){
     }
     return wings;
 }
+void createPlanes(Plane* planes, const char* id, int numberOfPlanes) {
+    for (int i = 0; i < numberOfPlanes; i++) {
+        // Use strncpy to safely copy the ID
+        strncpy(planes[i].id, id, sizeof(planes[i].id) - 1);
+        planes[i].id[sizeof(planes[i].id) - 1] = '\0'; // Ensure null-termination
+        
+        planes[i].isAvailable = true; // Set availability to true
+
+        // Use atoi or an appropriate conversion function
+        planes[i].wheel = createWheels(atoi(id) + i); // Assuming createWheels expects an integer ID
+        planes[i].wing = createWings(atol(id) + i);   // Assuming createWings expects a long ID
+
+        // Initialize planeType as an empty string
+        memset(planes[i].planeType, 0, sizeof(planes[i].planeType));
+    }
+}
 
 int main(int argc, char **argv)
 {
@@ -72,11 +89,18 @@ int main(int argc, char **argv)
         printf("Wheel id : %d\n", wheels[i].id);
     }
     /* Create wing - [4 points] */
-    /*
     long longId = 1;
-    Wing[] wings;
-    wings = createWings(longId);
-    */
+    Wing* wings = createWings(longId);
+    for (int i = 0; i < 2; i++)
+    {
+        printf("Wing id: ");
+        for (int j = 0; j < 9; j++)
+        {
+            printf("%d", wings[i].id[j]);
+        }
+        printf("\n");
+    }
+    
 
     /* Create plane - [4 points] */
     /*
