@@ -80,14 +80,16 @@ void createPlanes(Plane* planes, const char* id, int numberOfPlanes) {
 int main(int argc, char **argv)
 {
     /* PARTIE 2 - [10 points] */
-    /* Create wheel - [2 points] */
 
+    /* Create wheel - [2 points] */
     int id = 1;
     Wheel* wheels;
     wheels = createWheels(id);
     for (int i =0 ; i < 7 ; i++) {
         printf("Wheel id : %d\n", wheels[i].id);
     }
+
+
     /* Create wing - [4 points] */
     long longId = 1;
     Wing* wings = createWings(longId);
@@ -103,11 +105,15 @@ int main(int argc, char **argv)
     
 
     /* Create plane - [4 points] */
-    /*
     int numberOfPlanes = 3;
     Plane* planes = malloc(sizeof(Plane) * numberOfPlanes);
-    createPlanes(planes, *id, 3);
-    */
+    char* strId = "123";
+    createPlanes(planes, strId, numberOfPlanes);
+
+    for (int i = 0; i < numberOfPlanes; i++)
+    {
+        printf("Plane id: %s\n", planes[i].id);
+    }
 
     /* PARTIE 3 - [6 points] */
 
