@@ -61,7 +61,7 @@ Wing* createWings (long id){
     return wings;
 }
 
-void createPlanes(Plane* planes, const char* id, int numberOfPlanes){
+void createPlanes(Plane* planes,  char* id, int numberOfPlanes){
     const long wingId = 1;
     const int wheelId = 1;
     for (int i = 0; i < numberOfPlanes; i++){
@@ -103,7 +103,7 @@ void setPlaneType(Plane* plane){
     }
 }
 
-getPlanesByType(Plane* planes, char type[], const int numberOfPlanes){
+Plane* getPlanesByType(Plane* planes, char type[], const int numberOfPlanes){
     Plane* validPlanes = malloc(sizeof(Plane) * numberOfPlanes);
     int validPlanesIndex = 0;
     for (int i = 0; i < numberOfPlanes; i++){
@@ -135,10 +135,9 @@ int main(int argc, char **argv)
     Wing* wings = createWings(longId);
 
     /* Create plane - [4 points] */
-    int numberOfPlanes = 2;
-    char* id = "momo";
+    const int numberOfPlanes = 2;
     Plane* planes = malloc(sizeof(Plane) * numberOfPlanes);
-    createPlanes(planes, id, 3);
+    createPlanes(planes, "momo", 3);
     printf("id plane 0: %s \n", planes[0].id);
     printf("is plane 0 available: %d \n", planes[0].isAvailable);
     
@@ -158,7 +157,6 @@ int main(int argc, char **argv)
     
     /* Classify planes - [2 points] */
     
-    Plane* plane = &(planes[0]);
     setPlaneType(plane);
     printf("Plane type: %s \n", plane->planeType);
     
