@@ -1,0 +1,25 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     lab
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _createWheels, symObjAddr: 0x0, symBinAddr: 0x100002280, symSize: 0x180 }
+  - { offsetInCU: 0x3B, offset: 0x3B, size: 0x8, addend: 0x0, symName: _.str, symObjAddr: 0x16A0, symBinAddr: 0x100003A20, symSize: 0x0 }
+  - { offsetInCU: 0x66, offset: 0x66, size: 0x8, addend: 0x0, symName: _.str.1, symObjAddr: 0x16C0, symBinAddr: 0x100003A40, symSize: 0x0 }
+  - { offsetInCU: 0x83, offset: 0x83, size: 0x8, addend: 0x0, symName: _.str.2, symObjAddr: 0x16E0, symBinAddr: 0x100003A60, symSize: 0x0 }
+  - { offsetInCU: 0x94, offset: 0x94, size: 0x8, addend: 0x0, symName: _.str.3, symObjAddr: 0x1700, symBinAddr: 0x100003A80, symSize: 0x0 }
+  - { offsetInCU: 0xB1, offset: 0xB1, size: 0x8, addend: 0x0, symName: _.str.4, symObjAddr: 0x1720, symBinAddr: 0x100003AA0, symSize: 0x0 }
+  - { offsetInCU: 0xCE, offset: 0xCE, size: 0x8, addend: 0x0, symName: _.str.5, symObjAddr: 0x1760, symBinAddr: 0x100003AE0, symSize: 0x0 }
+  - { offsetInCU: 0xEB, offset: 0xEB, size: 0x8, addend: 0x0, symName: _.str.6, symObjAddr: 0x17C0, symBinAddr: 0x100003B40, symSize: 0x0 }
+  - { offsetInCU: 0x108, offset: 0x108, size: 0x8, addend: 0x0, symName: _.str.7, symObjAddr: 0x1800, symBinAddr: 0x100003B80, symSize: 0x0 }
+  - { offsetInCU: 0x125, offset: 0x125, size: 0x8, addend: 0x0, symName: _.str.8, symObjAddr: 0x1840, symBinAddr: 0x100003BC0, symSize: 0x0 }
+  - { offsetInCU: 0x142, offset: 0x142, size: 0x8, addend: 0x0, symName: _.str.9, symObjAddr: 0x1880, symBinAddr: 0x100003C00, symSize: 0x0 }
+  - { offsetInCU: 0x157, offset: 0x157, size: 0x8, addend: 0x0, symName: _createWheels, symObjAddr: 0x0, symBinAddr: 0x100002280, symSize: 0x180 }
+  - { offsetInCU: 0x1B7, offset: 0x1B7, size: 0x8, addend: 0x0, symName: _populateWingAttributes, symObjAddr: 0x180, symBinAddr: 0x100002400, symSize: 0x26C }
+  - { offsetInCU: 0x23D, offset: 0x23D, size: 0x8, addend: 0x0, symName: _createWings, symObjAddr: 0x3EC, symBinAddr: 0x10000266C, symSize: 0x88 }
+  - { offsetInCU: 0x29D, offset: 0x29D, size: 0x8, addend: 0x0, symName: _createPlanes, symObjAddr: 0x474, symBinAddr: 0x1000026F4, symSize: 0x274 }
+  - { offsetInCU: 0x331, offset: 0x331, size: 0x8, addend: 0x0, symName: _setAvailability, symObjAddr: 0x6E8, symBinAddr: 0x100002968, symSize: 0xA4 }
+  - { offsetInCU: 0x363, offset: 0x363, size: 0x8, addend: 0x0, symName: _getAvailablePlanes, symObjAddr: 0x78C, symBinAddr: 0x100002A0C, symSize: 0x2E8 }
+  - { offsetInCU: 0x3FB, offset: 0x3FB, size: 0x8, addend: 0x0, symName: _setPlaneType, symObjAddr: 0xA74, symBinAddr: 0x100002CF4, symSize: 0x1A8 }
+  - { offsetInCU: 0x43B, offset: 0x43B, size: 0x8, addend: 0x0, symName: _getPlanesByType, symObjAddr: 0xC1C, symBinAddr: 0x100002E9C, symSize: 0xF4 }
+  - { offsetInCU: 0x4B7, offset: 0x4B7, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0xD10, symBinAddr: 0x100002F90, symSize: 0x8F4 }
+...
