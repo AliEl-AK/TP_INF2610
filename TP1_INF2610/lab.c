@@ -177,5 +177,6 @@ int main(int argc, char **argv)
     free(planes);
     free(typedPlanes);
     
+    // gcc -fsanitize=address -g lab.c -o lab && ./lab
     return 0;
 }
