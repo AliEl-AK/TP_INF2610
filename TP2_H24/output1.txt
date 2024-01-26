@@ -1,0 +1,44 @@
+pwd 
+/Users/alielakhras/TP_INF2610/TP2_H24
+cd /Users/alielakhras/TP_INF2610/TP2_H24
+ls 
+Makefile        minisys.asm     output2.txt     output4.txt     part2.c
+TP2_INF2610.pdf output1.txt     output3.txt     part1.c
+ls | sort 
+Makefile
+TP2_INF2610.pdf
+minisys.asm
+output1.txt
+output2.txt
+output3.txt
+output4.txt
+part1.c
+part2.c
+echo "message1"
+message1
+echo "message1" > foo.txt;
+echo "message2" >> foo.txt;
+cat foo.txt
+message1
+message2
+unlink foo.txt; ls
+Makefile        minisys.asm     output2.txt     output4.txt     part2.c
+TP2_INF2610.pdf output1.txt     output3.txt     part1.c
+uname
+Darwin
+uname -s
+Darwin
+uname -r
+23.2.0
+uname -o 
+Darwin
+uname -m 
+arm64
+echo $path
+/Users/alielakhras/anaconda3/bin /Library/Frameworks/Python.framework/Versions/3.12/bin /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin /System/Cryptexes/App/usr/bin /usr/bin /bin /usr/sbin /sbin /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin /Applications/VMware Fusion.app/Contents/Public /Library/Frameworks/Mono.framework/Versions/Current/Commands
+which sleep
+/bin/sleep
+sleep 1
+/bin/sleep 1
+../../../../../bin/sleep 1
+sleep 1000 ^C (control C on mac)
