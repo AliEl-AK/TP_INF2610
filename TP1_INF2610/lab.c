@@ -1,6 +1,6 @@
 /* INF2610 - TP1
-/ Matricule 1 :
-/ Matricule 2 :
+/ Matricule 1 : 2143326 - Nom : Ali El-Akhras
+/ Matricule 2 : 2136216 - Nom : Sobhi Sandakli
 */
 #include <stdlib.h>
 #include <time.h>
@@ -16,7 +16,7 @@ typedef struct {
 } Wheel;
 
 typedef struct  {
-    int* id; //Allocation dynamique puisque on a pas la taille de tableau
+    int* id;
 } Wing ;
 
 typedef struct  {
@@ -28,7 +28,7 @@ typedef struct  {
 } Plane ;
 
 Wheel* createWheels (int id) {
-    int numWheels = 7;
+    const int numWheels = 7;
     Wheel* wheels = malloc(sizeof(Wheel) * numWheels);
     for (int i = 0; i < numWheels ; i++) {
         wheels[i].id = id + i;
@@ -38,106 +38,146 @@ Wheel* createWheels (int id) {
 }
 
 void populateWingAttributes(Wing* wing, int id){
+    const int modValue = 10;
     const int size = 9; 
     wing -> id  = malloc(sizeof(int) * size);
     
-    // Everything to zero at first 
     for (int i = 0; i < size; i++) {
         wing -> id[i] = 0;
     }
-    // size - 1 car on commence par 0 et non 1  
+
     for (int i = (size - 1) ; i > 0 ; i--){
-        wing -> id[i] = id % 10;
-        id = id/10; 
+        wing -> id[i] = id % modValue;
+        id = id / modValue; 
     }
 }
 
 Wing* createWings (long id){
-    int size =  2; 
+    const int wingSize =  2; 
     Wing *wings = malloc(sizeof(Wing) * 2);
-    for (int i = 0; i< size ; i++){
+    for (int i = 0; i< wingSize ; i++){
         populateWingAttributes(&wings[i], id + i );
     }
     return wings;
 }
-void createPlanes(Plane* planes, const char* id, int numberOfPlanes) {
-    for (int i = 0; i < numberOfPlanes; i++) {
-        // Use strncpy to safely copy the ID
-        strncpy(planes[i].id, id, sizeof(planes[i].id) - 1);
-        planes[i].id[sizeof(planes[i].id) - 1] = '\0'; // Ensure null-termination
-        
-        planes[i].isAvailable = true; // Set availability to true
 
-        // Use atoi or an appropriate conversion function
-        planes[i].wheel = createWheels(atoi(id) + i); // Assuming createWheels expects an integer ID
-        planes[i].wing = createWings(atol(id) + i);   // Assuming createWings expects a long ID
+void createPlanes(Plane* planes, const char* id, int numberOfPlanes){
+    const long wingId = 1;
+    const int wheelId = 1;
+    for (int i = 0; i < numberOfPlanes; i++){
+        Plane* currentPlane = planes + i;
+        currentPlane->id = id;
+        currentPlane->isAvailable = true;
+        currentPlane->wheel = createWheels(wheelId);
+        currentPlane->wing = createWings(wingId);
+    }
+}
+void setAvailability(Plane* plane, bool isAvailable){
+    plane -> isAvailable = isAvailable;
+}
 
-        // Initialize planeType as an empty string
-        memset(planes[i].planeType, 0, sizeof(planes[i].planeType));
+char** getAvailablePlanes(Plane* planes, int numberOfPlanes){
+    char** availablePlanes = malloc(sizeof(char*) * numberOfPlanes);
+    int availablePlanesIndex = 0;
+    for (int i = 0; i < numberOfPlanes; i++){
+        Plane* currentPlane = planes + i;
+        if (currentPlane->isAvailable){
+            availablePlanes[availablePlanesIndex] = currentPlane->id;
+            availablePlanesIndex++;
+        }
+    }
+    return availablePlanes;
+}
+
+void setPlaneType(Plane* plane){
+    int wingId = plane->wing->id[0];
+    int idWingMod = wingId % 9;
+    if (wingId < 3){
+        strcpy(plane->planeType, "Small");
+    } 
+    else if (wingId < 6){
+        strcpy(plane->planeType, "Medium");
+    } 
+    else if (wingId < 8){
+        strcpy(plane->planeType, "Large");
     }
 }
 
+getPlanesByType(Plane* planes, char type[], const int numberOfPlanes){
+    Plane* validPlanes = malloc(sizeof(Plane) * numberOfPlanes);
+    int validPlanesIndex = 0;
+    for (int i = 0; i < numberOfPlanes; i++){
+        Plane* currentPlane = planes + i;
+        bool str = strcmp(currentPlane->planeType, type);
+        if (!str){
+            validPlanes[validPlanesIndex] = *currentPlane;
+            validPlanesIndex++;
+        }
+    }
+    return validPlanes;
+}
+
+
+
+
 int main(int argc, char **argv)
 {
+    const int wingSize = 2; // 2 wings per plane
+
     /* PARTIE 2 - [10 points] */
-
+    
     /* Create wheel - [2 points] */
-    int id = 1;
-    Wheel* wheels;
-    wheels = createWheels(id);
-    for (int i =0 ; i < 7 ; i++) {
-        printf("Wheel id : %d\n", wheels[i].id);
-    }
-
+    const int id = 1;  
+    Wheel* wheels = createWheels(id);
 
     /* Create wing - [4 points] */
-    long longId = 1;
+    const long longId = 1;
     Wing* wings = createWings(longId);
-    for (int i = 0; i < 2; i++)
-    {
-        printf("Wing id: ");
-        for (int j = 0; j < 9; j++)
-        {
-            printf("%d", wings[i].id[j]);
-        }
-        printf("\n");
-    }
-    
 
     /* Create plane - [4 points] */
-    int numberOfPlanes = 3;
+    int numberOfPlanes = 2;
+    char* id = "momo";
     Plane* planes = malloc(sizeof(Plane) * numberOfPlanes);
-    char* strId = "123";
-    createPlanes(planes, strId, numberOfPlanes);
-
-    for (int i = 0; i < numberOfPlanes; i++)
-    {
-        printf("Plane id: %s\n", planes[i].id);
-    }
+    createPlanes(planes, id, 3);
+    printf("id plane 0: %s \n", planes[0].id);
+    printf("is plane 0 available: %d \n", planes[0].isAvailable);
+    
 
     /* PARTIE 3 - [6 points] */
 
     /* Set availabilities - [1 point] */
-    /*
-    Plane plane = planes[0];
+    
+    Plane* plane = &(planes[0]);
     setAvailability(plane, true);
-    */
+    printf("Availability of a plane after the  modification: %d \n", plane->isAvailable);
+
 
     /* Get available planes - [1 point] */
-    /*
-    getAvailablePlanes(planes, numberOfPlanes);
-    */
-
+    char** availablePlanes = getAvailablePlanes(planes, numberOfPlanes);
+    printf("Available planes: %s \n",  availablePlanes[0]);
+    
     /* Classify planes - [2 points] */
-    /*
-    Plane plane = planes[1];
+    
+    Plane* plane = &(planes[0]);
     setPlaneType(plane);
-    */
+    printf("Plane type: %s \n", plane->planeType);
+    
 
     /* Return type specific planes - [2 points] */
-    /*
-    char planeType[] = "Small";
-    getPlanesByType(planes, planeType,numberOfPlanes);
-    */
+    
+    char* planeType = "Small";
+    Plane* typedPlanes = getPlanesByType(planes, planeType,numberOfPlanes);
+    printf("Plane type: %s \n", typedPlanes[0].planeType);
+    
+    for(int i =0 ; i< wingSize; i++){
+        free(wings[i].id);
+    }
+
+    free(availablePlanes);
+    free(wheels);
+    free(wings);
+    free(planes);
+    free(typedPlanes);
+    
     return 0;
 }
