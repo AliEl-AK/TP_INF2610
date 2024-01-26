@@ -4,6 +4,8 @@
 ; Initlab - minisys.asm
 ;
 ; ajoutez vos noms, prénoms et matricules
+; Ali El-Akhras 2143326
+; Sobhi Sandakli - 2136216
 ;
 ; Documentation NASM: http://www.nasm.us/doc/nasmdoc3.html
 ;
@@ -22,6 +24,8 @@ SECTION .data
     msg         db    "INF2610-TP1 ", 0x0A        ; char * msg = "INF2610-TP1 \n";
     msg_len     equ   $-msg                       ; msg_len = taille de msg
 
+    msg_sleep         db    "Fin de la pause! ", 0x0A        ; char * msg = "INF2610-TP1 \n";
+    msg_sleep_len     equ   $-msg_sleep                       ; msg_len = taille de msg
 
 ; Voir: man nanosleep pour les paramètres
 ; premier paramètre, à passer à sys_nanosleep, est de type struct timespec :  delay1 (3 secondes, 100 nanosecondes)
@@ -59,8 +63,16 @@ _start:
     ; TODO: Pause avec sys_nanosleep suivi de sys_write "Fin de la pause!\n"
     ; prototype: nanosleep(   struct timespec *time1,
     ;                         struct timespec *time2)
+
+        mov     rdi, delay1
+        mov     rax, sys_nanosleep     ; appel systeme dans rax
+        syscall
     
-    
+        mov     rdi, stdout         ; argument 1
+        mov     rsi, msg_sleep      ; argument 2
+        mov     rdx, msg_sleep_len  ; argument 3
+        mov     rax, sys_write      ; appel systeme dans rax
+        syscall                     ; interruption logicielle
     ;
     ; Terminaison du processus
     ; prototype: _exit(int status)

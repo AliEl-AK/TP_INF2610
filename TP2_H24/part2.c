@@ -2,20 +2,19 @@
  * Ecole polytechnique de Montreal - GIGL
  * Hiver  2024
  * Initlab - part2.c
- *
+ * Ali El-Akhras - 2143326
+ * Sobhi Sandakli - 2136216
  * ajoutez vos noms, prénoms et matricules
 */
-
-#include <stdio.h>
-#include <stdlib.h>
 // Si besoin, ajouter ici les directives d'inclusion et les déclarations globales
 // -------------------------------------------------
-// TODO
-
+#include <_stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 // -------------------------------------------------
 void part21 ()
 {
- // TODO
+    const int stdOut = 1;
 }
 
 void part22 ()
